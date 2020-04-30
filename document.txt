@@ -29,8 +29,8 @@ public class addressbook {
        String sql = "insert into  addressbook values(?,?,?,?,?)";
       pst = con.prepareStatement(sql)
       pst.setInt(1,1);
-      pst.setString(2,"홍");
-      pst.setString(3,"010-1111-1111");
+      pst.setString(2,"나윤진");
+      pst.setString(3,"010-2278-5192");
       pst.setString(4,"a@naver.com");
       pst.setString(5,"서울");
 
@@ -64,3 +64,13 @@ public class addressbook {
       } catch (Exception e) { 
       e.printStackTrace(); 
    } 
+   
+   try {
+         String sql = "update addressbook set email = ?";
+    
+      pst.setString(1, "@naver.com");
+
+      int result = pst.executeUpdate();
+
+      System.out.println("결과 : "+result); 
+         }
