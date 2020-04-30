@@ -7,7 +7,21 @@ public class addressbook {
   public static void main(String[] args) {
     String jdbc_driver = "com.mysql.cj.jdbc.Driver"; String jdbc_url = "jdbc:mysql://localhost:3307/databasetest?serverTimezone=UTC"; 
     
-try { 
+    try { 
+      Class.forName(jdbc_driver).newInstance(); 
+      Connection con = DriverManager.getConnection(jdbc_url, "root", "123456"); 
+      Statement st = con.createStatement(); 
+       String sql = "CREATE TABLE addressbook( id INT, name VARCHAR(45), tel VARCHAR(45), email VARCHAR(60), address VARCHAR(60))";
+    
+      ResultSet rs = st.executeQuery(sql);
+      rs.close(); 
+      st.close(); 
+      con.close();
+      } catch (Exception e) { 
+      e.printStackTrace(); 
+   } 
+   
+   try { 
       Class.forName(jdbc_driver).newInstance(); 
       Connection con = DriverManager.getConnection(jdbc_url, "root", "123456"); 
       PreparedStatement pst = null;
@@ -49,4 +63,4 @@ try {
       con.close();
       } catch (Exception e) { 
       e.printStackTrace(); 
-   }
+   } 
