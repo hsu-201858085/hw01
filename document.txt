@@ -68,7 +68,7 @@ public class addressbook {
    try {
          String sql = "update addressbook set email = ?";
     
-      pst.setString(1, "@naver.com");
+      pst.setString5(1, "@naver.com");
 
       int result = pst.executeUpdate();
 
