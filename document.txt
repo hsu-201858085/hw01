@@ -74,3 +74,13 @@ public class addressbook {
 
       System.out.println("결과 : "+result); 
          }
+ 
+    try {
+       String sql = "delete from addressbook where values(?,?,?,?,?)";
+    
+      pst.setString id2("");
+
+      int result = pst.executeUpdate();
+
+      System.out.println("결과 : "+result);
+         }
