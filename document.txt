@@ -1,1 +1,51 @@
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+public class addressbook {
+  public static void main(String[] args) {
+    String jdbc_driver = "com.mysql.cj.jdbc.Driver"; String jdbc_url = "jdbc:mysql://localhost:3307/databasetest?serverTimezone=UTC"; 
+try { 
+      Class.forName(jdbc_driver).newInstance(); 
+      Connection con = DriverManager.getConnection(jdbc_url, "root", "123456"); 
+      PreparedStatement pst = null;
+
+       String sql = "insert into  addressbook values(?,?,?,?,?)";
+      pst = con.prepareStatement(sql)
+      pst.setInt(1,1);
+      pst.setString(2,"홍");
+      pst.setString(3,"010-1111-1111");
+      pst.setString(4,"a@naver.com");
+      pst.setString(5,"서울");
+
+      pst = con.prepareStatement(sql);
+      pst.executeQuery();
+
+
+      Statement st = con.createStatement(); 
+      st= con.createStatement(); 
+
+      sql = "select id, name, tel, email, address from addressbook";
+      ResultSet rs = st.executeQuery(sql);
+       while(rs.next()){
+        int id = rs.getInt("id");
+        String name = rs.getString("name");
+        String tel = rs.getString("tel");
+        String email = rs.getString("email");
+        String address = rs.getString("address");
+        
+        System.out.printf("id : "+ id);
+        System.out.printf("name : "+ name);
+        System.out.printf("tel : "+ tel);
+        System.out.printf("email : "+ email);
+        System.out.printf("address : "+ address);
+      }
+
+
+      rs.close(); 
+      st.close(); 
+      con.close();
+      } catch (Exception e) { 
+      e.printStackTrace(); 
+   }
